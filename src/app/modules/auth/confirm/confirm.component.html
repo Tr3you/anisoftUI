@@ -1,0 +1,26 @@
+<div class="confirm-container">
+    <div class="confirm">
+        <div class="form-side_text">
+            <h1>Verificar Cuenta</h1>
+            <p>Ingresa el codigo enviado a su correo</p>
+        </div>
+        <form nz-form [formGroup]="confirmForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Ingrese un codigo de verificacion valido">
+                  <nz-input-group nzPrefixIcon="solution">
+                    <input type="text" nz-input formControlName="code" placeholder="Codigo verificacion" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Verificar</button>
+            <!--
+            <a>Reenviar el codigo</a>
+            -->
+          </form>
+    </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <nz-spin style="z-index: 10;" nzSimple [nzSize]="'large'"></nz-spin>
+  <p>Cargando, espere un momento...</p>
+</div>

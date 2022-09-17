@@ -1,0 +1,53 @@
+<div class="login-container">
+    <div class="form-side">
+        <div class="form-side_text">
+            <h1>Crear Cuenta</h1>
+            <p>Ingrese sus datos para crear una cuenta</p>
+        </div>
+        <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Por favor ingrese su nombre!">
+                  <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="name" placeholder="Nombre" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Por favor ingrese su apellido!">
+                  <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="lastName" placeholder="Apellido" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Por favor ingrese su correo electronico!">
+                <nz-input-group nzPrefixIcon="user">
+                  <input type="text" nz-input formControlName="email" placeholder="Correo electronico" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Por favor ingrese una contraseña valida!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Contraseña" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Crear cuenta</button>
+            <button (click)="registerWithGoogle()" nz-button class="login-form-button login-form-margin">
+                <span nz-icon nzType="google" nzTheme="outline"></span>
+                Registrarme con Google
+            </button>
+            <a (click)="router.navigate(['/login'])">Ya tengo una cuenta</a>
+          </form>
+    </div>
+    <div class="image-side">
+        <div class="image-side_mask"></div>
+        <img src="../../../../assets/login-image.jpg" alt="">
+    </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <nz-spin style="z-index: 10;" nzSimple [nzSize]="'large'"></nz-spin>
+  <p>Cargando, espere un momento...</p>
+</div>
