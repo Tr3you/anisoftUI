@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle(){
     this.loginForm.disable()
-    window.location.href = 'https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=http://localhost:4200/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile'
+    window.location.href = 'https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=https://anisoftui.vercel.app/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile'
   }
 
   createBasicMessageError(message: string): void {
