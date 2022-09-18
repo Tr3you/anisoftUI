@@ -10,6 +10,10 @@
         width: 50vw;
         height: 100vh;
 
+        @media screen and (max-width: 800px){
+          display: none;
+        }
+
         &_mask{
             position: absolute;
             width: 100%;
@@ -24,6 +28,11 @@
         }
     }
     .form-side{
+      @media screen and (max-width: 800px){
+        width: 100vw;
+        height: auto;
+        margin: 2rem 0;
+      }
 
         img{
             width: 7rem;
