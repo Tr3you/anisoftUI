@@ -9,11 +9,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   })
 export class AuthService {
 
+    urlProd = "https://anisoft-authentication.herokuapp.com";
+    url = this.urlProd;
+
     constructor(private http: HttpClient, public jwtHelper: JwtHelperService){}
 
     getTokensWithCode(code: string): Observable<any>{
         return this.http.post<any>(
-            AuthEndpoints.exchange_code,
+            this.url + AuthEndpoints.exchange_code,
             {
                 code: code 
             }
@@ -22,7 +25,7 @@ export class AuthService {
 
     login(email: string, password: string): Observable<any> {
         return this.http.post<any>(
-            AuthEndpoints.login,
+            this.url + AuthEndpoints.login,
             {
                 email: email,
                 password: password
@@ -32,7 +35,7 @@ export class AuthService {
 
     signup(email: string, password: string, name: string, lastName: string){
         return this.http.post<any>(
-            AuthEndpoints.signup,
+            this.url + AuthEndpoints.signup,
             {
                 email: email,
                 password: password,
@@ -44,7 +47,7 @@ export class AuthService {
 
     confirmAccount(code: string, email: string){
         return this.http.post<any>(
-            AuthEndpoints.confirm,
+            this.url + AuthEndpoints.confirm,
             {
                 code: code,
                 email: email
