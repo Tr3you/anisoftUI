@@ -4,6 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenUtils } from 'src/app/core/utils/token';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class LoginComponent implements OnInit {
   loginForm!: UntypedFormGroup;
   isLoading = false;
+  REDIRECT = environment.redirectTo
 
   constructor(
     private fb: UntypedFormBuilder, 
@@ -53,16 +55,11 @@ export class LoginComponent implements OnInit {
           },
           complete: () => {
             this.isLoading = false;
-            this.router.navigate(['/home'])
+            this.router.navigate(['/dashboard'])
           }
         })
       }
     });
-
-    if(localStorage.getItem('access_token') != null){
-      this.router.navigate(['/home'])
-    }
-
   }
 
   submitForm(): void {
@@ -89,7 +86,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("refresh_token", response.refresh_token)
             localStorage.setItem("expires_in", response.expires_in.toString())
             localStorage.setItem("email", response.email)
-            this.router.navigate(['/home'])
+            this.router.navigate(['/dashbaord'])
           }
         },
         error: (error) =>{
@@ -109,7 +106,7 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle(){
     this.loginForm.disable()
-    window.location.href = 'https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=https://anisoftui.vercel.app/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile'
+    window.location.href =`https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=${this.REDIRECT}/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile`
   }
 
   createBasicMessageError(message: string): void {

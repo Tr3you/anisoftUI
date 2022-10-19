@@ -11,18 +11,21 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-
+import { MenuModule } from './shared/components/menu/menu.module';
+import { HeaderModule } from './shared/components/header/header.module';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MenuModule,
+    HeaderModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],

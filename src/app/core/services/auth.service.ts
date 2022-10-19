@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { AuthEndpoints } from "../constants/enpoints";
 import { Observable } from "rxjs";
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root'
   })
 export class AuthService {
 
-    urlProd = "https://anisoft-authentication.herokuapp.com";
-    url = this.urlProd;
+    url = environment.apiUrl;
 
     constructor(private http: HttpClient, public jwtHelper: JwtHelperService){}
 

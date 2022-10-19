@@ -1,0 +1,36 @@
+<div class="menu">
+    <img src="/assets/logo.png" alt="logo ecoplanet">
+
+    <div>
+        <ul>
+            <li class=" menuItem active" (click)="selectMenuItem('dashboard', 0)">
+                <span nz-icon nzType="dashboard" nzTheme="outline"></span>
+                <p>Dashboard</p>
+            </li>
+            <li class="menuItem" (click)="selectMenuItem('articles', 1)">
+                <span nz-icon nzType="shopping" nzTheme="outline"></span>
+                <p>Articulos</p>
+            </li>
+            <li class="menuItem" (click)="selectMenuItem('species', 2)">
+                <span nz-icon nzType="yuque" nzTheme="outline"></span>
+                <p>Especies</p>
+            </li>
+            <li class="menuItem" (click)="selectMenuItem('diets', 3)">
+                <span nz-icon nzType="coffee" nzTheme="outline"></span>
+                <p>Dietas</p>
+            </li>
+            <li class="menuItem" (click)="selectMenuItem('users', 4)">
+                <span nz-icon nzType="team" nzTheme="outline"></span>
+                <p>Usuarios</p>
+            </li>
+            <li class="menuItem" (click)="selectMenuItem('settings', 5)">
+                <span nz-icon nzType="setting" nzTheme="outline"></span>
+                <p>Configuracion</p>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <p style="margin: 0;">© 2022 Anisoft</p>
+    </div>
+</div>

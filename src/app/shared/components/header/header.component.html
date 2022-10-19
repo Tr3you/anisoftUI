@@ -1,0 +1,16 @@
+<header>
+    <span class="header-btnMenu" nz-icon nzType="menu" nzTheme="outline"></span>
+    <div class="header-options">
+        <span  nz-icon nzType="bell" nzTheme="outline"></span>
+        <div style="cursor:pointer" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            <span style="margin-right: 0.5rem" nz-icon nzType="user" nzTheme="outline"></span>
+            <span nz-icon nzType="down" nzTheme="outline"></span>
+        </div>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li style="cursor: default" nz-menu-item>{{userEmail}}</li>
+              <li nz-menu-item nzDanger (click)="logout()">Cerrar Sesion</li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+</header>

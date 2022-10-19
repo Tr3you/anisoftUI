@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="container">
+    <aside *ngIf="isLogged">
+        <menu-component></menu-component>
+    </aside>
+    <main [ngClass]="!isLogged? 'without-aside':''">
+        <header-component *ngIf="isLogged"></header-component>
+        <router-outlet></router-outlet>
+    </main>
+</div>

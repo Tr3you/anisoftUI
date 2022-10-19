@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenUtils } from 'src/app/core/utils/token';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,7 @@ import { TokenUtils } from 'src/app/core/utils/token';
 export class SignupComponent implements OnInit {
   signupForm!: UntypedFormGroup;
   isLoading = false;
+  REDIRECT = environment.redirectTo
 
   constructor(
     private fb: UntypedFormBuilder, 
@@ -53,18 +55,18 @@ export class SignupComponent implements OnInit {
           },
           complete: () => {
             this.isLoading = false;
-            this.router.navigate(['/home'])
+            this.router.navigate(['/dashboard'])
           }
         })
       }
     });
-    
-    if(localStorage.getItem('access_token') != null){
-      this.router.navigate(['/home'])
-    }
   }
 
   submitForm(): void {
+    if(this.signupForm.controls[3].value != this.signupForm.controls[4].value){
+      this.createBasicMessageError("¡La contraseña y su confirmacion no coinciden!")
+      return
+    }
     if (this.signupForm.valid) {
       this.isLoading = true;
       const email = this.signupForm.get('email')?.value
@@ -92,16 +94,12 @@ export class SignupComponent implements OnInit {
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
-
-      if(this.signupForm.controls[3].value != this.signupForm.controls[4].value){
-
-      }
     }
   }
 
   registerWithGoogle(){
     this.signupForm.disable()
-    window.location.href ='https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=https://anisoftui.vercel.app/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile'
+    window.location.href =`https://anisoft.auth.us-east-2.amazoncognito.com/oauth2/authorize?identity_provider=Google&redirect_uri=${this.REDIRECT}/login&response_type=CODE&client_id=7b35jv379536khq7iv8i06s3c4&scope=email openid phone profile`
   }
 
   createBasicMessageError(message: string): void {
