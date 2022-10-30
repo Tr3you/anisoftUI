@@ -1,0 +1,27 @@
+<div class="articles-home-container">
+    <div>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>Articulos</nz-breadcrumb-item>
+            <nz-breadcrumb-item></nz-breadcrumb-item>
+        </nz-breadcrumb>
+    </div>
+
+    <div class="options">
+        <div class="options-item">
+            <span class="list-decorator"></span>
+            <a (click)="router.navigate(['/articles/all'])">Enlistar todo</a>
+        </div>
+        <div class="options-item">
+            <span class="list-decorator"></span>
+            <a (click)="router.navigate(['/articles/all/add-article'])">Añadir articulo</a>
+        </div>
+        <div class="options-item">
+            <span class="list-decorator"></span>
+            <a (click)="router.navigate(['/articles/all/create-macerate'])">Crear macerado</a>
+        </div>
+        <div class="options-item">
+            <span class="list-decorator"></span>
+            <a (click)="router.navigate(['/articles/nutrional-complements'])">Complementos nutricionales</a>
+        </div>
+    </div>
+</div>

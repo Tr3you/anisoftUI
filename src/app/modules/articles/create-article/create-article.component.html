@@ -1,0 +1,63 @@
+<div class="create-article-container">
+    <div>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>Articulos</nz-breadcrumb-item>
+            <nz-breadcrumb-item>
+                <a>Enlistar todo</a>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>Añadir articulo</nz-breadcrumb-item>
+        </nz-breadcrumb>
+    </div>
+    <div class="title">
+        <span class="list-decorator"></span>
+        <p>Añadir articulo</p>
+    </div>
+
+    <section class="section-form">
+        <div class="form">
+            <nz-select  [(ngModel)]="articleType" nzPlaceHolder="Selecciona un tipo de articulo" nzAllowClear>
+                <nz-option nzValue="0" nzLabel="Alimento"></nz-option>
+                <nz-option nzValue="1" nzLabel="Producto"></nz-option>
+            </nz-select>
+
+            <input nz-input placeholder="ID Articulo" type="text"/>
+
+            <input nz-input placeholder="Nombre articulo" type="text"/>
+
+            <input *ngIf="articleType == 0" nz-input placeholder="Calorias por cada 100 g" type="number"/>
+
+            <nz-date-picker nzPlaceHolder="Fecha de vencimiento"></nz-date-picker>
+
+            <nz-select nzPlaceHolder="Selecciona estado inicial del producto" nzAllowClear>
+                <nz-option nzValue="0" nzLabel="Activo"></nz-option>
+                <nz-option nzValue="1" nzLabel="Inactivo"></nz-option>
+            </nz-select>
+        </div>
+        <div>
+            <p class="subtitle" *ngIf="articleType == 0">Complementos nutricionales</p>
+        </div>
+        <form nz-form [formGroup]="complementsForm" *ngIf="articleType == 0">
+            <nz-form-item *ngFor="let control of listOfControl; let i = index">
+              <nz-input-group nzCompact nzErrorTip="Please input passenger's name or delete this field.">
+                <nz-select class="reactiveControls"nzPlaceHolder="Seleccione un complemento nutricional" [formControlName]="control.controlInstance" nzAllowClear>
+                  <nz-option [nzLabel]="'Proteina'" [nzValue]="'Proteina'"></nz-option>
+                  <nz-option [nzLabel]="'Vitamina A'" [nzValue]="'Vitamina A'"></nz-option>
+                  <nz-option [nzLabel]="'Vitamina B12'" [nzValue]="'Vitamina B12'"></nz-option>
+                  <nz-option [nzLabel]="'Sodio'" [nzValue]="'Sodio'"></nz-option>
+                  <nz-option [nzLabel]="'Potasio'" [nzValue]="'Potasio'"></nz-option>
+                </nz-select>
+                <input class="reactiveControls" [formControlName]="control.controlInstance2" placeholder="Ingrese la cantidad en gramos" type="number" nz-input />
+              </nz-input-group>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+                  <span nz-icon nzType="plus"></span>
+                  Agregar complemento
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+        </form>
+        <button style="margin-top: 3rem;" nz-button nzType="primary" nzValue="large">Añadir articulo</button>
+    </section>
+</div>

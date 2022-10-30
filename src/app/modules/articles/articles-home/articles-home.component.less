@@ -1,0 +1,41 @@
+@primary-color: #7ea747;
+
+.articles-home-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 3rem;
+    bottom: 0;
+    padding: 1rem;
+    overflow-y: auto;
+
+    .options{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        row-gap: 5rem;
+        margin-top: 4rem;
+
+        .options-item{
+            display: flex;
+            align-items: center;
+
+            a{
+                width: 15rem;
+                margin-left: 1rem;
+                color: #000;
+                font-size: 2rem;
+                font-weight: 500;
+            }
+
+            .list-decorator{
+                display: block;
+                width: 1.2rem;
+                height: 3.5rem;
+                background-color: @primary-color;
+
+                border-top-right-radius: 1.5rem;
+                border-bottom-right-radius: 1.5rem;
+            }
+        }
+    }
+}
